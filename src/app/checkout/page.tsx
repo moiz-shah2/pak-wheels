@@ -43,7 +43,7 @@ export default function CheckoutPage() {
               required
               className="w-full p-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
-             <Link href={"/confirmationdd"}>
+             <Link href={"/confirmation"}>
             <button
               type="submit"
               className="w-full bg-blue-600 text-white font-semibold py-3 rounded-md hover:bg-blue-700 transition"
