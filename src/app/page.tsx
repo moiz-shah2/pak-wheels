@@ -1,55 +1,74 @@
+// app/page.tsx
+
 import Image from "next/image";
+import Link from "next/link";
 import Header from "./components/Header";
+import HeroSection from "./components/HeroSection";
 
 export default function Home() {
+  const cars = [
+    {
+      name: "Toyota Corolla",
+      price: "PKR 59.7-65.5 lac",
+      image: "/corolla (2).webp",
+      link: "/corolla",
+    },
+    {
+      name: "Suzuki Alto",
+      price: "PKR 23-30.5 lac",
+      image: "/alto.webp",
+      link: "/alto",
+    },
+    {
+      name: "Suzuki Swift",
+      price: "PKR 39.7-45.5 lac",
+      image: "/swift.webp",
+      link: "/swift",
+    },
+    {
+      name: "Honda Civic",
+      price: "PKR 65.5-70.5 lac",
+      image: "/civic.webp",
+      link: "/civic", // ✅ ✅ ✅ Link added here
+    },
+  ];
+
   return (
     <div>
       <Header />
-      <h1 className="text-4xl font-bold text-orange-600 text-center my-6">
-        Welcome to My Demo Website
-      </h1>
+      <HeroSection />
 
-      <div className="cars flex justify-center gap-7">
-        {/* Corolla */}
-        <div className="corolla border h-64 w-64 relative bg-white">
-          <Image
-            src="/Corolla (2).webp"
-            alt="corolla"
-            fill
-            className="object-contain"
-          />
-        </div>
+      <section className="p-6">
+        <h2 className="text-2xl font-bold mb-6 text-center">Featured Cars</h2>
 
-        {/* Alto */}
-        <div className="alto border h-64 w-64 relative bg-white">
-          <Image
-            src="/Alto.webp"
-            alt="Alto"
-            fill
-            className="object-contain"
-          />
-        </div>
+        <div className="flex flex-wrap gap-6 justify-center">
+          {cars.map((car, i) => {
+            const Card = (
+              <div
+                className="w-52 border border-gray-300 rounded-lg p-4 bg-gray-50 text-center shadow hover:shadow-md transition"
+              >
+                <Image
+                  src={car.image}
+                  alt={car.name}
+                  width={180}
+                  height={120}
+                  className="object-contain mx-auto"
+                />
+                <h3 className="mt-3 text-blue-700 font-semibold">{car.name}</h3>
+                <p className="text-green-600 text-sm">{car.price}</p>
+              </div>
+            );
 
-        {/* Swift */}
-        <div className="swift border h-64 w-64 relative bg-white">
-          <Image
-            src="/Swift.webp"
-            alt="Swift"
-            fill
-            className="object-contain"
-          />
+            return car.link ? (
+              <Link href={car.link} key={i} className="hover:scale-105 transition-transform">
+                {Card}
+              </Link>
+            ) : (
+              <div key={i}>{Card}</div>
+            );
+          })}
         </div>
-
-        {/* Civic */}
-        <div className="civics border h-64 w-64 relative bg-white">
-          <Image
-            src="/Civic.webp"
-            alt="Civic"
-            fill
-            className="object-contain"
-          />
-        </div>
-      </div>
+      </section>
     </div>
   );
 }
